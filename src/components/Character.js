@@ -24,6 +24,10 @@ const Character = ({ data, filters }) => {
         .toLocaleLowerCase()
         .includes(filters.name.toLocaleLowerCase());
     })
+    .filter(eachData => 
+        filters.gender === ''
+        ? true : eachData.gender === filters.gender
+    )
     .map((eachData, index) => {
       return (
         <Link key={index} to={`/character/${eachData.id}`}>

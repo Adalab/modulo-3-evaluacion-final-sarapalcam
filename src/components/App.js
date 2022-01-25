@@ -14,6 +14,7 @@ function App() {
   const [filters, setFilters] = useState({
     house: 'Gryffindor',
     name: '',
+    gender: ''
   });
 
   useEffect(() => {
@@ -45,17 +46,29 @@ function App() {
   getCharactersRoute();
   /////
 
+  const handleResetForm = () => {
+    setFilters({
+      house: 'Gryffindor',
+      name: '',
+      gender: ''
+    });
+  };
+
   return (
     <div className="App">
       <Header />
       <main>
         <Switch>
           <Route exact path="/">
-            <Form filters={filters} handleInputs={handleInputs} />
+            <Form
+              filters={filters}
+              handleInputs={handleInputs}
+              handleResetForm={handleResetForm}
+            />
             <CharacterList data={data} filters={filters} />
           </Route>
           <Route path="/character/:characterId">
-            <CharacterDetails data={data} characterDetails={characterDetails}/>
+            <CharacterDetails data={data} characterDetails={characterDetails} />
           </Route>
         </Switch>
       </main>

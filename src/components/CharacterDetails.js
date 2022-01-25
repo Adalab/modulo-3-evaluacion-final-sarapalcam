@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
-import Button from './Button';
+import GryffindorLogo from '../images/gryffindor_logo.png';
+import HufflepuffLogo from '../images/hufflepuff_logo.png';
+import RavenclawLogo from '../images/ravenclaw_logo.png';
+import SlytherinLogo from '../images/slytherin_logo.png';
 
 const CharacterDetails = ({ data, characterDetails }) => {
   const selectedCharacter = data.find(
@@ -8,16 +11,16 @@ const CharacterDetails = ({ data, characterDetails }) => {
 
   const getAlternateNames = () => {
     const htmlAlternateNames = selectedCharacter.alternateNames.map(
-      (eachName) => {
-        return <li>{eachName}</li>;
+      (eachName, index) => {
+        return <li key={index}>{eachName}</li>;
       }
     );
     if (selectedCharacter.alternateNames.length !== 0) {
       return (
-        <p>
-          Nombres alternativos:
+        <>
+          <p>Nombres alternativos:</p>
           <ul>{htmlAlternateNames}</ul>
-        </p>
+        </>
       );
     }
   };
@@ -59,10 +62,22 @@ const CharacterDetails = ({ data, characterDetails }) => {
     return selectedCharacter.gender === 'female' ? 'Mujer' : 'Hombre';
   };
 
+  const getHouseImg = (house) => {
+    if (house === 'Gryffindor') {
+      return GryffindorLogo;
+    } else if (house === 'Hufflepuff') {
+      return HufflepuffLogo;
+    } else if (house === 'Ravenclaw') {
+      return RavenclawLogo;
+    } else if (house === 'Slytherin') {
+      return SlytherinLogo;
+    }
+  };
+
   return (
     <article>
       <Link to="/">
-        <Button btnText="Volver al listado" />
+        <button>Volver al listado</button>
       </Link>
       <img
         src={
@@ -74,10 +89,24 @@ const CharacterDetails = ({ data, characterDetails }) => {
       />
       <p>{selectedCharacter.name}</p>
       {getAlternateNames()}
-      <p>Estatus: {getStatus()}</p>
+      <p>
+        Estatus: {getStatus()}{' '}
+        {selectedCharacter.alive ? (
+          <i className="fas fa-heartbeat"></i>
+        ) : (
+          <i className="fas fa-skull"></i>
+        )}
+      </p>
       <p>Especie: {getSpecies()}</p>
       <p>Género: {getGender()}</p>
-      <p>Casa: {selectedCharacter.house}</p>
+      <p>
+        Casa: {selectedCharacter.house}
+        <img
+          src={getHouseImg(selectedCharacter.house)}
+          alt={`Escudo de ${selectedCharacter.house}`}
+          title={`Escudo de ${selectedCharacter.house}`}
+        />
+      </p>
     </article>
   );
 };

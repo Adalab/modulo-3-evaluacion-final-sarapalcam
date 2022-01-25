@@ -1,6 +1,6 @@
 import Character from "./Character";
 
-const CharacterList = ( {data, filters, getSpecies} ) => {
+const CharacterList = ( {data, filters} ) => {
     return (
         <>
         <ul>
