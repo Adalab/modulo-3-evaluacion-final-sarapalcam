@@ -1,17 +1,19 @@
 import '../styles/index.scss';
 import '../styles//App.scss';
 import { useEffect, useState } from 'react';
+import { Route, useRouteMatch, Switch } from 'react-router-dom';
 import callToApi from '../services/fetch';
 import Header from './Header';
 import Form from './Form';
-import List from './List';
+import CharacterList from './CharacterList';
 import Footer from './Footer';
+import CharacterDetails from './CharacterDetails';
 
 function App() {
   const [data, setData] = useState([]);
   const [filters, setFilters] = useState({
     house: 'Gryffindor',
-    name: ''
+    name: '',
   });
 
   useEffect(() => {
@@ -23,18 +25,41 @@ function App() {
   const handleInputs = (name, value) => {
     setFilters({
       ...filters,
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
-return (
+  //Intentar meter toda esta parte de Router en una función
+  const routeData = useRouteMatch('/character/:characterId');
+  const characterDetails =
+    routeData !== null ? routeData.params.characterId : '';
+
+  const getCharactersRoute = () => {
+    if (characterDetails) {
+      return characterDetails;
+    } else {
+      return {};
+    }
+  };
+
+  getCharactersRoute();
+  /////
+
+  return (
     <div className="App">
-      <Header/>
+      <Header />
       <main>
-        <Form filters={filters} handleInputs={handleInputs}/>
-        <List data={data} filters={filters}/>
+        <Switch>
+          <Route exact path="/">
+            <Form filters={filters} handleInputs={handleInputs} />
+            <CharacterList data={data} filters={filters} />
+          </Route>
+          <Route path="/character/:characterId">
+            <CharacterDetails data={data} characterDetails={characterDetails}/>
+          </Route>
+        </Switch>
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
