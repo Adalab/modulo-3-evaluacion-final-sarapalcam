@@ -20,11 +20,20 @@ const CharacterDetails = ({ selectedCharacter }) => {
     }
   }
 
-
-  const getImageSrc = (image) => {
-    return image === ""
-      ? "https://via.placeholder.com/210x295/ffffff/666666/?text=HarryPotter"
-      : image;
+  const getImageSrc = (character) => { 
+    if(character.image === ""){
+      if (character.house === "Gryffindor"){
+        return GryffindorLogo
+      } else  if (character.house === "Hufflepuff"){
+        return HufflepuffLogo
+      }else  if (character.house === "Ravenclaw"){
+        return RavenclawLogo
+      }else  if (character.house === "Slytherin"){
+        return SlytherinLogo
+      }
+    } else {
+      return character.image
+    }
   };
 
   const getAlternateNames = () => {
@@ -101,30 +110,32 @@ const CharacterDetails = ({ selectedCharacter }) => {
       
       <img 
       className="character__img"
-      src={getImageSrc(selectedCharacter.image)}
+      src={getImageSrc(selectedCharacter)}
       alt={`Imagen de ${selectedCharacter.name}`}
       title={`Imagen de ${selectedCharacter.name}`} />
-      <p className="character__name">{selectedCharacter.name}</p>
-      {getAlternateNames()}
-      <p className="character__text">
-        Estatus: {getStatus()}{" "}
-        {selectedCharacter.alive ? (
-          <i className="fas fa-heartbeat character__alive"></i>
-        ) : (
-          <i className="fas fa-skull character__alive"></i>
-        )}
-      </p>
-      <p className="character__text">Especie: {getSpecies()}</p>
-      <p className="character__text">Género: {getGender()}</p>
-      <p className="character__text">
-        Casa: {selectedCharacter.house}
+      <div className="character__container">
+        <p className="character__name">{selectedCharacter.name}</p>
+        {getAlternateNames()}
+        <p className="character__text">
+          Estatus: {getStatus()}{" "}
+          {selectedCharacter.alive ? (
+            <i className="fas fa-heartbeat character__icon--alive"></i>
+          ) : (
+            <i className="fas fa-skull character__icon--dead"></i>
+          )}
+        </p>
+        <p className="character__text">Especie: {getSpecies()}</p>
+        <p className="character__text">Género: {getGender()}</p>
+        <p className="character__text">
+          Casa: {selectedCharacter.house}
+        </p>
         <img
-        className="character__house"
-          src={getHouseImg(selectedCharacter.house)}
-          alt={`Escudo de ${selectedCharacter.house}`}
-          title={`Escudo de ${selectedCharacter.house}`}
-        />
-      </p>
+          className="character__house"
+            src={getHouseImg(selectedCharacter.house)}
+            alt={`Escudo de ${selectedCharacter.house}`}
+            title={`Escudo de ${selectedCharacter.house}`}
+          />
+      </div>
     </article>
     </>
   );

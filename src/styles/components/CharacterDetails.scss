@@ -1,46 +1,131 @@
 @import '../core/variables.scss';
 @import '../core/mixins.scss';
 
-.gryffindor_character{
+.gryffindor_character {
+  display: none;
+  background-color: rgba($color: $gryffDark, $alpha: 0.3);
+  color: $mainColor;
+  @include tablet {
     background-image: url('../../images/gryffindor_logo.png');
     background-repeat: no-repeat;
-    background-position: 750px -80px;
+    background-position: 150% 30%;
     background-size: calc(50%);
+  }
 }
 
-.hufflepuff_character{
+.hufflepuff_character {
+  display: none;
+  background-color: rgba($color: $huffDark, $alpha: 0.3);
+  color: $mainColor;
+  @include tablet {
     background-image: url('../../images/hufflepuff_logo.png');
     background-repeat: no-repeat;
-    background-position: 730px -20px;
+    background-position: 155% 30%;
     background-size: calc(53%);
+  }
 }
 
-.ravenclaw_character{
+.ravenclaw_character {
+  display: none;
+  background-color: rgba($color: $ravenDark, $alpha: 0.3);
+  color: $mainColor;
+  @include tablet {
     background-image: url('../../images/ravenclaw_logo.png');
     background-repeat: no-repeat;
-    background-position: 780px -20px;
+    background-position: 150% 30%;
     background-size: calc(50%);
+  }
 }
 
-.slytherin_character{
+.slytherin_character {
+  display: none;
+  background-color: rgba($color: $slythDark, $alpha: 0.3);
+  color: $mainColor;
+  @include tablet {
     background-image: url('../../images/slytherin_logo.png');
     background-repeat: no-repeat;
-    background-position: 690px -100px;
+    background-position: 220% 40%;
     background-size: calc(70%);
+  }
 }
 
 .character {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 1000px;
+  font-family: $mainFont;
+  margin-bottom: 40px;
+  @include tablet{
+    flex-direction: row;
+  }
+  &__btn {
+    margin: 40px 0 20px;
+    height: 35px;
+    width: 200px;
+    font-family: $mainFont;
+    font-size: 22px;
+    padding-top: 3px;
+    background-color: rgba($color: $mainColor, $alpha: .4);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all ease-in-out .3s;
+    &:hover{
+      transform: translateX(-4px);
+      box-shadow: 0 0 10px rgba($color: $mainColor, $alpha: .3);
+      background-color: rgba($color: $mainColor, $alpha: .8);;
+    }
+    @include tablet{
+      margin: 20px 0;
+
+    }
+  }
+  &__img {
+    width: 100%;
+    @include tablet{
+      width: 300px;
+    }
+  }
+  &__container {
     display: flex;
-    border-radius: 10px;
-    background-color: rgb(255, 255, 255);
-    
-    padding: 20px;
-    &__img {
-        width: 300px;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    @include tablet{
+      display: inherit;
+      margin: 50px 0 0 30px;
+    align-items: flex-start;
+
     }
-    &__house{
-        width: 20px;
-        position: absolute;
-        
+  }
+  &__name {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  &__altNames--item {
+    font-size: 18px;
+    list-style: circle;
+    margin-left: 45px;
+  }
+  &__text {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  &__icon {
+    &--alive {
+      font-size: 24px;
+      color: rgb(202, 45, 45);
     }
+    &--dead {
+      font-size: 24px;
+      color: rgb(148, 96, 168);
+    }
+  }
+  &__house {
+    width: 90px;
+    margin-top: 15px;
+  }
 }

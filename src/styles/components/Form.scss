@@ -1,32 +1,67 @@
-@import "../core/variables.scss";
-@import "../core/mixins.scss";
+@import '../core/variables.scss';
+@import '../core/mixins.scss';
 
 .form {
   display: flex;
-  align-items: flex-end;
-  margin: 60px 0;
+  flex-direction: column;
+  margin: 0px 0 40px;
+  @include tablet {
+    margin: 30px 0;
+    flex-direction: row;
+    align-items: flex-end;
+  }
   &__section {
     display: flex;
     flex-direction: column;
     margin-right: 35px;
     font-family: $mainFont;
-    &--label{
+    &--label {
+      margin: 15px 0 5px;
+      font-size: 18px;
+      color: $mainColor;
+      @include tablet {
         margin-bottom: 10px;
-        font-size: 18px;
+      }
     }
-    &--input{
+    &--input {
+      width: 280px;
+      height: 30px;
+      padding: 4px 0 0 5px;
+      border: none;
+      background-color: rgba($mainColor, 0.8);
+      cursor: pointer;
+      transition: all ease-in-out .3s;
+      &:hover{
+        background-color: $mainColor;
+      }
+      @include tablet {
         width: 180px;
-        height: 30px;
-        padding: 4px 0 0 5px;
-    }
-    &--option{
-        background-color: rgb(42, 173, 182);
+      }
     }
   }
   &__reset {
     font-family: $mainFont;
-padding-top: 4px;
-      width: 180px;
-      height: 30px;
+    padding-top: 4px;
+    width: 180px;
+    min-height: 40px;
+    margin-top: 20px;
+    color: $mainColor;
+    background-color: rgba(0, 0, 0, 0.473);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all ease-in-out .3s;
+    &:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 0 10px rgba($color: $mainColor, $alpha: .3);
+    }
+    @include tablet {
+      margin: 0px;
+      position: absolute;
+      transform: translateY(60px);
+      &:hover{
+        transform: translateY(56px);
+      }
+    }
   }
 }

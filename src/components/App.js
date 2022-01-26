@@ -2,7 +2,7 @@ import "../styles/index.scss";
 import "../styles//App.scss";
 import { useEffect, useState } from "react";
 import { Route, useRouteMatch, Switch } from "react-router-dom";
-import localStorage from "../services/localStorage";
+// import localStorage from "../services/localStorage";
 import callToApi from "../services/fetch";
 import Header from "./Header";
 import Form from "./Form";
@@ -48,6 +48,18 @@ function App() {
     return selectedCharacter || {};
   };
 
+  const setClassNameApp = () => {
+    if (filters.house === `Gryffindor`){
+      return "App__gryffindor"
+    } else if (filters.house === "Hufflepuff") {
+      return "App__hufflepuff";
+    } else if (filters.house === "Ravenclaw") {
+      return "App__ravenclaw";
+    } else if (filters.house === "Slytherin") {
+      return "App__slytherin";
+    }
+  }
+
   const handleResetForm = () => {
     setFilters({
       house: "Gryffindor",
@@ -57,7 +69,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className={`App ${setClassNameApp()}`}>
       <Header />
       <main className="main">
         <Switch>
