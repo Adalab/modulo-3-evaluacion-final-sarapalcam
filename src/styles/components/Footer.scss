@@ -5,53 +5,53 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-    color: $mainColor;
-    font-family: $mainFont;
-    font-size: 14px;
-    padding: 10px 10%;
-    width: 100%;
-    height: 100px;
-    margin-top: 40px;
-    @include tablet{
-flex-direction: row;    align-items: center
-    }
-    &__small {
-      width: 175px;
-    }
-    &__contact {
-      width: 120px;
-     margin-top: 20px;
-      display: flex;
-      justify-content: space-between;
+  color: $mainColor;
+  font-family: $mainFont;
+  font-size: 14px;
+  padding: 10px 10%;
+  width: 100%;
+  height: 100px;
+  margin-top: 40px;
+  @include tablet {
+    margin-top: 0;
+    flex-direction: row;
+    align-items: center;
+  }
+  &__small {
+    width: 175px;
+  }
+  &__contact {
+    width: 120px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
 
-      @include tablet{
-        margin:0 0 0 40px;
-
-      }
-      &--github {
-        font-size: 25px;
-        color: white;
-        transition: all ease-in-out .3s;
-    &:hover{
-      transform: scale(1.2);
+    @include tablet {
+      margin: 0 0 0 40px;
     }
+    &--github {
+      font-size: 25px;
+      color: white;
+      transition: all ease-in-out 0.3s;
+      &:hover {
+        transform: scale(1.2);
       }
-      &--linkedin {
-        font-size: 25px;
-        color: white;
-        transition: all ease-in-out .3s;
-    &:hover{
-      transform: scale(1.2);
     }
+    &--linkedin {
+      font-size: 25px;
+      color: white;
+      transition: all ease-in-out 0.3s;
+      &:hover {
+        transform: scale(1.2);
       }
-      &--instagram {
-        font-size: 25px;
-        color: white;
-        transition: all ease-in-out .3s;
-    &:hover{
-      transform: scale(1.2);
     }
+    &--instagram {
+      font-size: 25px;
+      color: white;
+      transition: all ease-in-out 0.3s;
+      &:hover {
+        transform: scale(1.2);
       }
     }
   }
-  
+}

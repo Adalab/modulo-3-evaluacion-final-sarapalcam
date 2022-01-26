@@ -2,7 +2,7 @@ import "../styles/index.scss";
 import "../styles//App.scss";
 import { useEffect, useState } from "react";
 import { Route, useRouteMatch, Switch } from "react-router-dom";
-// import localStorage from "../services/localStorage";
+import localStorage from "../services/localStorage";
 import callToApi from "../services/fetch";
 import Header from "./Header";
 import Form from "./Form";
@@ -13,7 +13,7 @@ import NotFoundPage from "./NotFoundPage";
 
 //NO FUNCIONA EL LOCAL STORAGE CON LOS QUE NO SON DE GRYFFNDOR. PENSARLO BIEN
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(localStorage.get('api_data', []));
   const [filters, setFilters] = useState({
     house: "Gryffindor",
     name: "",
@@ -24,9 +24,13 @@ function App() {
   useEffect(() => {
     setIsLoading(true);
     callToApi(filters.house).then((dataFromApi) => {
+     localStorage.clear();
       setData(dataFromApi);
       setIsLoading(false)
-    });
+      console.log(data);
+    })
+    .then(localStorage.set('api_data', data));
+    
   }, [filters.house]);
 
   const handleInputs = (name, value) => {

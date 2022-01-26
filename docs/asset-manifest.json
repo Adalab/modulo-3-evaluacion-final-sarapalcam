@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.bd1ac0d5.css",
-    "main.js": "./static/js/main.32c03f8e.js",
+    "main.css": "./static/css/main.8f545181.css",
+    "main.js": "./static/js/main.3c29adb1.js",
     "static/media/ravenclaw_logo.png": "./static/media/ravenclaw_logo.9610bcde136dbfa89da6.png",
     "static/media/gryffindor_logo.png": "./static/media/gryffindor_logo.5c4db2d2fff6851a55cb.png",
     "static/media/hufflepuff_logo.png": "./static/media/hufflepuff_logo.f6d11a5457195a54f900.png",
@@ -9,11 +9,11 @@
     "static/media/not_found.png": "./static/media/not_found.d68b1b049f64d8f2cefe.png",
     "static/media/title_HP.png": "./static/media/title_HP.7cf33f27a9ead35d8408.png",
     "index.html": "./index.html",
-    "main.bd1ac0d5.css.map": "./static/css/main.bd1ac0d5.css.map",
-    "main.32c03f8e.js.map": "./static/js/main.32c03f8e.js.map"
+    "main.8f545181.css.map": "./static/css/main.8f545181.css.map",
+    "main.3c29adb1.js.map": "./static/js/main.3c29adb1.js.map"
   },
   "entrypoints": [
-    "static/css/main.bd1ac0d5.css",
-    "static/js/main.32c03f8e.js"
+    "static/css/main.8f545181.css",
+    "static/js/main.3c29adb1.js"
   ]
 }
