@@ -1,0 +1,46 @@
+@import '../core/variables.scss';
+@import '../core/mixins.scss';
+
+.gryffindor_character{
+    background-image: url('../../images/gryffindor_logo.png');
+    background-repeat: no-repeat;
+    background-position: 750px -80px;
+    background-size: calc(50%);
+}
+
+.hufflepuff_character{
+    background-image: url('../../images/hufflepuff_logo.png');
+    background-repeat: no-repeat;
+    background-position: 730px -20px;
+    background-size: calc(53%);
+}
+
+.ravenclaw_character{
+    background-image: url('../../images/ravenclaw_logo.png');
+    background-repeat: no-repeat;
+    background-position: 780px -20px;
+    background-size: calc(50%);
+}
+
+.slytherin_character{
+    background-image: url('../../images/slytherin_logo.png');
+    background-repeat: no-repeat;
+    background-position: 690px -100px;
+    background-size: calc(70%);
+}
+
+.character {
+    display: flex;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    
+    padding: 20px;
+    &__img {
+        width: 300px;
+    }
+    &__house{
+        width: 20px;
+        position: absolute;
+        
+    }
+}

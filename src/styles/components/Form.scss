@@ -1,0 +1,32 @@
+@import "../core/variables.scss";
+@import "../core/mixins.scss";
+
+.form {
+  display: flex;
+  align-items: flex-end;
+  margin: 60px 0;
+  &__section {
+    display: flex;
+    flex-direction: column;
+    margin-right: 35px;
+    font-family: $mainFont;
+    &--label{
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+    &--input{
+        width: 180px;
+        height: 30px;
+        padding: 4px 0 0 5px;
+    }
+    &--option{
+        background-color: rgb(42, 173, 182);
+    }
+  }
+  &__reset {
+    font-family: $mainFont;
+padding-top: 4px;
+      width: 180px;
+      height: 30px;
+  }
+}

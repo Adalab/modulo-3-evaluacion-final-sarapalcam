@@ -1,0 +1,30 @@
+@import "../core/variables.scss";
+@import "../core/mixins.scss";
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 180px);
+  grid-auto-rows: 320px;
+  &__article {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: white;
+      width: 167px;
+      border-radius: 5px;
+      font-family: $mainFont;
+      text-align: center;
+    &--img {
+      height: 232px;
+      width: 167px;
+      border-radius: 5px 5px 0 0;
+    }
+    &--name{
+        font-size: 18px;
+        margin-top: 5px;
+    }
+    &--species{
+        margin: 6px 0 8px;
+    }
+  }
+}
