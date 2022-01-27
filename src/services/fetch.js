@@ -16,6 +16,7 @@ const callToApi = (inputValue) => {
           id: `${eachData.house.toLowerCase()}_${index}`
         };
       });
+      localStorage.set('api_data', data)
       return filteredData;
     });
 };

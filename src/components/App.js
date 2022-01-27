@@ -11,27 +11,28 @@ import Footer from "./Footer";
 import CharacterDetails from "./CharacterDetails";
 import NotFoundPage from "./NotFoundPage";
 
-//NO FUNCIONA EL LOCAL STORAGE CON LOS QUE NO SON DE GRYFFNDOR. PENSARLO BIEN
 function App() {
   const [data, setData] = useState(localStorage.get('api_data', []));
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState(localStorage.get('filters', {
     house: "Gryffindor",
     name: "",
     gender: "",
-  });
+  }));
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
+       setIsLoading(true);
     callToApi(filters.house).then((dataFromApi) => {
-     localStorage.clear();
       setData(dataFromApi);
       setIsLoading(false)
-      console.log(data);
-    })
-    .then(localStorage.set('api_data', data));
-    
+    })  
   }, [filters.house]);
+
+
+  useEffect(() => {
+    localStorage.set('api_data', data);
+    localStorage.set('filters', filters);
+  }, [data, filters]);
 
   const handleInputs = (name, value) => {
     setFilters({
@@ -45,11 +46,13 @@ function App() {
   const getCharactersRoute = () => {
     const characterDetails =
       routeData !== null ? routeData.params.characterId : "";
+    
+console.log(characterDetails);
+    
     const selectedCharacter = data.find(
       (eachData) => eachData.id === characterDetails
     );
-    //ESTO NO FUNCIONA PORQUE LOS NOMBRES ALTERNATIVOS SON UN ARRAY Y DA FALLO
-    return selectedCharacter || {};
+    return selectedCharacter || <NotFoundPage/>;
   };
 
   const setClassNameApp = () => {
@@ -77,7 +80,7 @@ function App() {
       <Header />
       <main className="main">
         <Switch>
-          <Route path="/character/:characterId">
+          <Route exact path="/character/:characterId">
             <CharacterDetails selectedCharacter={getCharactersRoute()} />
           </Route>
           <Route exact path="/">
@@ -87,11 +90,9 @@ function App() {
               handleResetForm={handleResetForm}
             />
             <CharacterList isLoading={isLoading} data={data} filters={filters} />
-          </Route>
+          </Route >
           {/* Funciona con las estáticas pero no con las dinámicas */}
-          <Route>
-            <NotFoundPage />
-          </Route>
+          <Route component={NotFoundPage}/>
         </Switch>
       </main>
       <Footer />

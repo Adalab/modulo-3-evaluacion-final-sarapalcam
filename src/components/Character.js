@@ -80,13 +80,14 @@ const Character = ({ data, filters }) => {
         </Link>
       );
     });
+
   if (renderedData.length > 0) {
     return renderedData;
   } else {
     return (
-      <p>
+      <p className="list__article--not-found">
         ¡Ooops! No hemos encontrado ningún personaje que coincida con el nombre
-        que estás buscando.
+        que estás buscando. Prueba con otro.
       </p>
     );
   }
