@@ -5,6 +5,8 @@
   display: none;
   background-color: rgba($color: $gryffDark, $alpha: 0.3);
   color: $mainColor;
+  box-shadow: 
+  0 0 15px rgba($gryffLight, 0.6);
   @include tablet {
     background-image: url('../../images/gryffindor_logo.png');
     background-repeat: no-repeat;
@@ -17,6 +19,8 @@
   display: none;
   background-color: rgba($color: $huffDark, $alpha: 0.3);
   color: $mainColor;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.616);
+  
   @include tablet {
     background-image: url('../../images/hufflepuff_logo.png');
     background-repeat: no-repeat;
@@ -29,6 +33,8 @@
   display: none;
   background-color: rgba($color: $ravenDark, $alpha: 0.3);
   color: $mainColor;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.616);
+
   @include tablet {
     background-image: url('../../images/ravenclaw_logo.png');
     background-repeat: no-repeat;
@@ -39,8 +45,9 @@
 
 .slytherin_character {
   display: none;
-  background-color: rgba($color: $slythDark, $alpha: 0.3);
+  background-color: rgba($color: $slythDark, $alpha: 0.5);
   color: $mainColor;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.616);
   @include tablet {
     background-image: url('../../images/slytherin_logo.png');
     background-repeat: no-repeat;
@@ -79,9 +86,12 @@
       background-color: rgba($color: $mainColor, $alpha: .8);;
     }
     @include tablet{
-      margin: 20px 0 20px 10%;
-
+      margin: 60px 0 20px 10%;;
     }
+    @include desktop{
+      margin: 20px 0 20px 10%;
+    }
+    
   }
   &__img {
     width: 100%;

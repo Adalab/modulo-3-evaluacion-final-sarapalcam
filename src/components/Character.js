@@ -1,4 +1,4 @@
-import '../styles/components/CharacterList.scss';
+import "../styles/components/CharacterList.scss";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import GryffindorLogo from "../images/gryffindor_logo.png";
@@ -7,34 +7,33 @@ import RavenclawLogo from "../images/ravenclaw_logo.png";
 import SlytherinLogo from "../images/slytherin_logo.png";
 
 const Character = ({ data, filters }) => {
-
-  const getImageSrc = (character) => { 
-    if(character.image === ""){
-      if (character.house === "Gryffindor"){
-        return GryffindorLogo
-      } else  if (character.house === "Hufflepuff"){
-        return HufflepuffLogo
-      }else  if (character.house === "Ravenclaw"){
-        return RavenclawLogo
-      }else  if (character.house === "Slytherin"){
-        return SlytherinLogo
+  const getImageSrc = (character) => {
+    if (character.image === "") {
+      if (character.house === "Gryffindor") {
+        return GryffindorLogo;
+      } else if (character.house === "Hufflepuff") {
+        return HufflepuffLogo;
+      } else if (character.house === "Ravenclaw") {
+        return RavenclawLogo;
+      } else if (character.house === "Slytherin") {
+        return SlytherinLogo;
       }
     } else {
-      return character.image
+      return character.image;
     }
   };
 
   const getClassName = (character) => {
-    if (character.house === "Gryffindor"){
-      return "gryffindor__card"
-    } else  if (character.house === "Hufflepuff"){
-      return "hufflepuff__card"
-    }else  if (character.house === "Ravenclaw"){
-      return "ravenclaw__card"
-    }else  if (character.house === "Slytherin"){
-      return "slytherin__card"
+    if (character.house === "Gryffindor") {
+      return "gryffindor__card";
+    } else if (character.house === "Hufflepuff") {
+      return "hufflepuff__card";
+    } else if (character.house === "Ravenclaw") {
+      return "ravenclaw__card";
+    } else if (character.house === "Slytherin") {
+      return "slytherin__card";
     }
-  }
+  };
 
   //Esta función está repetida en CharacterDetails, intentar pasarla a App
   const getSpecies = (character) => {
@@ -54,6 +53,7 @@ const Character = ({ data, filters }) => {
   };
 
   const renderedData = data
+    .sort((a, b) => (a.name > b.name ? 1 : -1))
     .filter((eachData) => {
       return eachData.name
         .toLocaleLowerCase()
@@ -65,7 +65,7 @@ const Character = ({ data, filters }) => {
     .map((eachData, index) => {
       return (
         <Link key={index} to={`/character/${eachData.id}`}>
-          <li >
+          <li>
             <article className={`list__article ${getClassName(eachData)}`}>
               <img
                 className="list__article--img"

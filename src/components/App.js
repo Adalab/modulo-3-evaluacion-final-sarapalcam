@@ -45,15 +45,19 @@ function App() {
 
   const getCharactersRoute = () => {
     const characterDetails =
-      routeData !== null ? routeData.params.characterId : "";
-    
-console.log(characterDetails);
-    
+      routeData !== null ? routeData.params.characterId : "";    
     const selectedCharacter = data.find(
       (eachData) => eachData.id === characterDetails
     );
-    return selectedCharacter || <NotFoundPage/>;
-  };
+    return selectedCharacter || { name: "El personaje que buscas no existe :(",
+    alternateNames: [],
+    species: "undefined",
+    gender: "undefined",
+    house: "undefined",
+    alive: false,
+    image: "undefined",
+    id: "undefined"
+  }};
 
   const setClassNameApp = () => {
     if (filters.house === `Gryffindor`){
@@ -91,7 +95,6 @@ console.log(characterDetails);
             />
             <CharacterList isLoading={isLoading} data={data} filters={filters} />
           </Route >
-          {/* Funciona con las estáticas pero no con las dinámicas */}
           <Route component={NotFoundPage}/>
         </Switch>
       </main>

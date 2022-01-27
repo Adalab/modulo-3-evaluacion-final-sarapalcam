@@ -6,9 +6,12 @@
   flex-direction: column;
   margin: 0px 0 40px;
   @include tablet {
-    margin: 30px 10%;
+    margin: 60px 10%;
     flex-direction: row;
     align-items: flex-end;
+  }
+  @include desktop{
+    margin: 30px 10%;
   }
   &__section {
     display: flex;
@@ -46,7 +49,7 @@
     min-height: 40px;
     margin-top: 20px;
     color: $mainColor;
-    background-color: rgba(0, 0, 0, 0.473);
+    background-color: rgba(116, 116, 116, 0.473);
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -54,6 +57,7 @@
     &:hover{
       transform: translateY(-4px);
       box-shadow: 0 0 10px rgba($color: $mainColor, $alpha: .3);
+      background-color: rgba($color: $mainColor, $alpha: .4);
     }
     @include tablet {
       margin: 0px;

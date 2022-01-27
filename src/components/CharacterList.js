@@ -4,6 +4,7 @@ import Loader from './Loader';
 import Character from "./Character";
 
 const CharacterList = ( {isLoading, data, filters} ) => {
+
     return (
         <>
         <ul className="list">
