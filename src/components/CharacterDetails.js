@@ -5,6 +5,7 @@ import GryffindorLogo from "../images/gryffindor_logo.png";
 import HufflepuffLogo from "../images/hufflepuff_logo.png";
 import RavenclawLogo from "../images/ravenclaw_logo.png";
 import SlytherinLogo from "../images/slytherin_logo.png";
+import propTypes from "prop-types";
 
 const CharacterDetails = ({ selectedCharacter }) => {
 
