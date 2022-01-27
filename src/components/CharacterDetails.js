@@ -8,6 +8,7 @@ import SlytherinLogo from "../images/slytherin_logo.png";
 
 const CharacterDetails = ({ selectedCharacter }) => {
 
+  //Translator and styles functions
   const getClassName = () => {
     if (selectedCharacter.house === "Gryffindor") {
       return "gryffindor_character";
@@ -72,7 +73,6 @@ const CharacterDetails = ({ selectedCharacter }) => {
     }
   };
 
-  //Esta función está repetida en Character, intentar pasarla a App
   const getSpecies = () => {
     if (selectedCharacter.species === "human") {
       if (selectedCharacter.gender === "female") {
@@ -105,6 +105,7 @@ const CharacterDetails = ({ selectedCharacter }) => {
     }
   };
 
+  //Render
   return (
     <>
       <Link to="/">

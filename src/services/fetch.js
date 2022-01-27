@@ -1,5 +1,3 @@
-import localStorage from './localStorage';
-
 const callToApi = (inputValue) => {
   return fetch(`http://hp-api.herokuapp.com/api/characters/house/${inputValue.toLowerCase()}`)
     .then((response) => response.json())
@@ -13,10 +11,10 @@ const callToApi = (inputValue) => {
           house: eachData.house,
           alive: eachData.alive,
           image: eachData.image,
+          yearOfBirth: JSON.stringify(eachData.yearOfBirth),
           id: `${eachData.house.toLowerCase()}_${index}`
         };
       });
-      localStorage.set('api_data', data)
       return filteredData;
     });
 };

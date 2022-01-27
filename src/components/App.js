@@ -20,6 +20,7 @@ function App() {
   }));
   const [isLoading, setIsLoading] = useState(false);
 
+  //Fetch
   useEffect(() => {
        setIsLoading(true);
     callToApi(filters.house).then((dataFromApi) => {
@@ -28,12 +29,13 @@ function App() {
     })  
   }, [filters.house]);
 
-
+  //LocalStorage
   useEffect(() => {
     localStorage.set('api_data', data);
     localStorage.set('filters', filters);
   }, [data, filters]);
 
+  //Filters handler
   const handleInputs = (name, value) => {
     setFilters({
       ...filters,
@@ -41,6 +43,7 @@ function App() {
     });
   };
 
+  //Router
   const routeData = useRouteMatch("/character/:characterId");
 
   const getCharactersRoute = () => {
@@ -59,6 +62,7 @@ function App() {
     id: "undefined"
   }};
 
+  //Styles 
   const setClassNameApp = () => {
     if (filters.house === `Gryffindor`){
       return "App__gryffindor"
@@ -69,8 +73,9 @@ function App() {
     } else if (filters.house === "Slytherin") {
       return "App__slytherin";
     }
-  }
+  };
 
+  //Reset filters
   const handleResetForm = () => {
     setFilters({
       house: "Gryffindor",
@@ -93,7 +98,7 @@ function App() {
               handleInputs={handleInputs}
               handleResetForm={handleResetForm}
             />
-            <CharacterList isLoading={isLoading} data={data} filters={filters} />
+            <CharacterList isLoading={isLoading} data={data} filters={filters}/>
           </Route >
           <Route component={NotFoundPage}/>
         </Switch>

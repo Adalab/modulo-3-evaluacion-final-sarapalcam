@@ -7,6 +7,8 @@ import RavenclawLogo from "../images/ravenclaw_logo.png";
 import SlytherinLogo from "../images/slytherin_logo.png";
 
 const Character = ({ data, filters }) => {
+
+  //Translator and styles functions
   const getImageSrc = (character) => {
     if (character.image === "") {
       if (character.house === "Gryffindor") {
@@ -35,7 +37,6 @@ const Character = ({ data, filters }) => {
     }
   };
 
-  //Esta función está repetida en CharacterDetails, intentar pasarla a App
   const getSpecies = (character) => {
     if (character.species === "human") {
       if (character.gender === "female") {
@@ -52,6 +53,7 @@ const Character = ({ data, filters }) => {
     }
   };
 
+  //Filters and map
   const renderedData = data
     .sort((a, b) => (a.name > b.name ? 1 : -1))
     .filter((eachData) => {
@@ -81,6 +83,7 @@ const Character = ({ data, filters }) => {
       );
     });
 
+  //Function return
   if (renderedData.length > 0) {
     return renderedData;
   } else {
