@@ -12,27 +12,30 @@ import CharacterDetails from "./CharacterDetails";
 import NotFoundPage from "./NotFoundPage";
 
 function App() {
-  const [data, setData] = useState(localStorage.get('api_data', []));
-  const [filters, setFilters] = useState(localStorage.get('filters', {
-    house: "Gryffindor",
-    name: "",
-    gender: "",
-  }));
+  const [data, setData] = useState(localStorage.get("api_data", []));
+  const [filters, setFilters] = useState(
+    localStorage.get("filters", {
+      house: "Gryffindor",
+      name: "",
+      gender: "",
+      // altNames: ""
+    })
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   //Fetch
   useEffect(() => {
-       setIsLoading(true);
+    setIsLoading(true);
     callToApi(filters.house).then((dataFromApi) => {
       setData(dataFromApi);
-      setIsLoading(false)
-    })  
+      setIsLoading(false);
+    });
   }, [filters.house]);
 
   //LocalStorage
   useEffect(() => {
-    localStorage.set('api_data', data);
-    localStorage.set('filters', filters);
+    localStorage.set("api_data", data);
+    localStorage.set("filters", filters);
   }, [data, filters]);
 
   //Filters handler
@@ -48,24 +51,28 @@ function App() {
 
   const getCharactersRoute = () => {
     const characterDetails =
-      routeData !== null ? routeData.params.characterId : "";    
+      routeData !== null ? routeData.params.characterId : "";
     const selectedCharacter = data.find(
       (eachData) => eachData.id === characterDetails
     );
-    return selectedCharacter || { name: "El personaje que buscas no existe :(",
-    alternateNames: [],
-    species: "undefined",
-    gender: "undefined",
-    house: "undefined",
-    alive: false,
-    image: "undefined",
-    id: "undefined"
-  }};
+    return (
+      selectedCharacter || {
+        name: "El personaje que buscas no existe :(",
+        alternateNames: [],
+        species: "undefined",
+        gender: "undefined",
+        house: "undefined",
+        alive: false,
+        image: "undefined",
+        id: "undefined",
+      }
+    );
+  };
 
-  //Styles 
+  //Styles
   const setClassNameApp = () => {
-    if (filters.house === `Gryffindor`){
-      return "App__gryffindor"
+    if (filters.house === `Gryffindor`) {
+      return "App__gryffindor";
     } else if (filters.house === "Hufflepuff") {
       return "App__hufflepuff";
     } else if (filters.house === "Ravenclaw") {
@@ -74,6 +81,21 @@ function App() {
       return "App__slytherin";
     }
   };
+
+  //Filters
+  const filteredData = data
+    .sort((a, b) => (a.name > b.name ? 1 : -1))
+    .filter((eachData) => {
+      return eachData.name
+        .toLocaleLowerCase()
+        .includes(filters.name.toLocaleLowerCase());
+    })
+    .filter((eachData) =>
+      filters.gender === "" ? true : eachData.gender === filters.gender
+    );
+  // .filter((eachData => {
+  //   return eachData.alternateNames.length === parseInt(filters.altNames)
+  // }))
 
   //Reset filters
   const handleResetForm = () => {
@@ -98,9 +120,12 @@ function App() {
               handleInputs={handleInputs}
               handleResetForm={handleResetForm}
             />
-            <CharacterList isLoading={isLoading} data={data} filters={filters}/>
-          </Route >
-          <Route component={NotFoundPage}/>
+            <CharacterList
+              isLoading={isLoading}
+              filteredData={filteredData}
+            />
+          </Route>
+          <Route component={NotFoundPage} />
         </Switch>
       </main>
       <Footer />

@@ -3,20 +3,19 @@ import PropTypes from "prop-types";
 import Loader from "./Loader";
 import Character from "./Character";
 
-const CharacterList = ({ isLoading, data, filters }) => {
+const CharacterList = ({ isLoading, filteredData }) => {
 
   return (
     <>
       <ul className="list">
         <Loader isLoading={isLoading} />
-        <Character data={data} filters={filters} />
+        <Character filteredData={filteredData}/>
       </ul>
     </>
   );
 };
 
 CharacterList.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   filters: PropTypes.object,
 };
 

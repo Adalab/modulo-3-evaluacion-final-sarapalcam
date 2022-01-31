@@ -1,43 +1,52 @@
-import '../styles/components/Form.scss';
-import PropTypes from 'prop-types';
+import "../styles/components/Form.scss";
+import PropTypes from "prop-types";
 import HouseForm from "./HouseForm";
 import NameForm from "./NameForm";
 import GenderForm from "./GenderForm";
+// import AltNAmeForm from "./AltNameForm";
 
-const Form = ( {filters, handleInputs, handleResetForm} ) => {
+const Form = ({
+  filters,
+  handleInputs,
+  handleResetForm,
+}) => {
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
 
-    const handleSubmit = (ev) => {
-        ev.preventDefault();
-    }
+  const handleClickReset = () => {
+    handleResetForm();
+  };
 
-    const handleClickReset = () => {
-        handleResetForm()
-    }
-
-    return (
-        <form className="form" action="" onSubmit={handleSubmit}>
-            <NameForm filters={filters} handleInputs={handleInputs}/>
-            <HouseForm filters={filters} handleInputs={handleInputs}/>
-            <GenderForm filters={filters} handleInputs={handleInputs}/>
-            <button className="form__reset" onClick={handleClickReset}>Eliminar filtros</button>
-        </form>
-        )
-}
-
-
+  return (
+    <form className="form" action="" onSubmit={handleSubmit}>
+      <NameForm filters={filters} handleInputs={handleInputs} />
+      <HouseForm filters={filters} handleInputs={handleInputs} />
+      <GenderForm filters={filters} handleInputs={handleInputs} />
+      {/* <AltNAmeForm
+        filters={filters}
+        handleInputs={handleInputs}
+      
+      /> */}
+      <button className="form__reset" onClick={handleClickReset} >
+        Eliminar filtros
+      </button>
+    </form>
+  );
+};
 
 Form.propTypes = {
-    filters: PropTypes.object,
-    handleInputs: PropTypes.func.isRequired,
-    handleResetForm: PropTypes.func
-  };
-  
-  Form.defaultPropTypes = {
-    filters: {
-      house: "Gryffindor",
-      name: "",
-      gender: "",
-    }
-  }
-  
+  filters: PropTypes.object,
+  handleInputs: PropTypes.func.isRequired,
+  handleResetForm: PropTypes.func,
+};
+
+Form.defaultPropTypes = {
+  filters: {
+    house: "Gryffindor",
+    name: "",
+    gender: "",
+  },
+};
+
 export default Form;
